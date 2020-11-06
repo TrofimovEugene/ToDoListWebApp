@@ -28,16 +28,25 @@
     </style>
 </head>
 <body>
-    <div>
-      <main role="main" class="pb-3">
-              @RenderBody()
-              </main>
-    </div>
+<div>
+	<nav class="navbar" style="background-color: #0866C6">
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+		<a class="navbar-brand" style="color: white">ToDo List</a>
+		<form class="form-inline" asp-controller="Account" asp-action="Logout">
+			<input type="submit" value="Выйти"/>
+		</form>
+	</nav>
+</div>
+<div>
+	<main role="main" class="pb-3">
+		@RenderBody()
+	</main>
+</div>
 
-    @await RenderSectionAsync("Scripts", required: false)
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

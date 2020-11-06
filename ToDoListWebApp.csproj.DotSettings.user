@@ -1,0 +1,15 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=JS_005CSITE_002EJS/@EntryIndexedValue"></s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=LIB_005CBOOTSTRAP_005CDIST_005CJS_005CBOOTSTRAP_002EBUNDLE_002EMIN_002EJS/@EntryIndexedValue"></s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=LIB_005CJQUERY_002DVALIDATION_002DUNOBTRUSIVE_005CJQUERY_002EVALIDATE_002EUNOBTRUSIVE_002EMIN_002EJS/@EntryIndexedValue"></s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=LIB_005CJQUERY_002DVALIDATION_005CDIST_005CJQUERY_002EVALIDATE_002EMIN_002EJS/@EntryIndexedValue"></s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=LIB_005CJQUERY_005CDIST_005CJQUERY_002EMIN_002EJS/@EntryIndexedValue"></s:String>
+	
+	
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=JQUERY_002EVALIDATE_002EUNOBTRUSIVE_002EMIN_002EJS/@EntryIndexedValue">jquery.validate.unobtrusive.min.js</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=JS_005CSITE_002EJS/@EntryIndexedValue">js\site.js</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=LIB_005CBOOTSTRAP_005CDIST_005CJS_005CBOOTSTRAP_002EBUNDLE_002EMIN_002EJS/@EntryIndexedValue">lib\bootstrap\dist\js\bootstrap.bundle.min.js</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=LIB_005CJQUERY_002DVALIDATION_002DUNOBTRUSIVE/@EntryIndexedValue">lib\jquery-validation-unobtrusive</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=LIB_005CJQUERY_002DVALIDATION_002DUNOBTRUSIVE_005CJQUERY_002EVALIDATE_002EUNOBTRUSIVE_002EMIN_002EJS/@EntryIndexedValue">lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=LIB_005CJQUERY_002DVALIDATION_005CDIST_005CJQUERY_002EVALIDATE_002EMIN_002EJS/@EntryIndexedValue">lib\jquery-validation\dist\jquery.validate.min.js</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=LIB_005CJQUERY_005CDIST_005CJQUERY_002EMIN_002EJS/@EntryIndexedValue">lib\jquery\dist\jquery.min.js</s:String></wpf:ResourceDictionary>

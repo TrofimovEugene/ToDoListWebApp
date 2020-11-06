@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ToDoListWebApp.Pages
+namespace ToDoListWebApp.Views.Home
 {
     public class Index : PageModel
     {
