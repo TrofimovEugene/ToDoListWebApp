@@ -41,8 +41,6 @@
             </div>
         </div>
     </div>
-
-
     @if (Model.Notes != null)
     {
         foreach (var note in Model.Notes)
@@ -55,13 +53,15 @@
                             <p class="card-text">@note.Text</p>
                             <p class="card-text">
                                 <small class="text-muted">Last updated @note.DateLastChanged</small>
+                            </p>
+                            <p class="card-text">
                                 <small class="text-muted">Created @note.DateCreated</small>
                             </p>
+                            <button type="button" class="btn btn-primary">Edit</button>
                         </div>
                     </div>
                 </form>
             </div>
         }
     }
-
 </div>

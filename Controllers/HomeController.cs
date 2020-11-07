@@ -21,6 +21,7 @@ namespace ToDoListWebApp.Controllers
 		{
 			_context = context;
 		}
+		
 		[Authorize]
 		public async Task<IActionResult> Index()
 		{
@@ -28,6 +29,7 @@ namespace ToDoListWebApp.Controllers
 			var notes = await _context.Notes.Where(note => note.IdUser.ToString() == _userid).ToListAsync();
 			return View(new NoteViewModel() {Notes = new List<Note>(notes)});
 		}
+		
 		[Authorize]
 		public async Task<IActionResult> CreateNote(NoteViewModel noteViewModel)
 		{
