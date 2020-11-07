@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ToDoListWebApp.ViewModels
+namespace ToDoListWebApp.ViewModels.Account
 {
 	public class RegisterViewModel
 	{
