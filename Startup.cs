@@ -28,8 +28,7 @@ namespace ToDoListWebApp
         {
 	        var connection = Configuration.GetConnectionString("DefaultConnection");
 	        services.AddDbContext<ToDoListContext>(options => options.UseSqlServer(connection));
-
-	        // установка конфигурации подключения
+	        
 	        services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 		        .AddCookie(options => //CookieAuthenticationOptions
 		        {
