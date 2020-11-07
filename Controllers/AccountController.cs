@@ -39,7 +39,7 @@ namespace ToDoListWebApp.Controllers
                 var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
                 if (user != null)
                 {
-                    await Authenticate(model.Email); // аутентификация
+                    await Authenticate(user.Email, user.Id); // аутентификация
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -58,21 +58,22 @@ namespace ToDoListWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
                 if (user == null)
                 {
                     // добавляем пользователя в бд
-                    _context.Users.Add(new User
+                    await _context.Users.AddAsync(new User
                     {
                         FirstName = model.FirstName,
                         LastName = model.LastName,
                         DateOfBirth = model.DateOfBirth,
-	                    Email = model.Email, 
-	                    Password = model.Password
+                        Email = model.Email, 
+                        Password = model.Password
                     });
                     await _context.SaveChangesAsync();
-
-                    await Authenticate(model.Email); // аутентификация
+                    
+                    user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
+                    await Authenticate(user.Email, user.Id); // аутентификация
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -82,7 +83,7 @@ namespace ToDoListWebApp.Controllers
             return View(model);
         }
 
-        private async Task Authenticate(string userName)
+        private async Task Authenticate(string userName, Guid userid)
         {
             // создаем один claim
             var claims = new List<Claim>
@@ -90,9 +91,10 @@ namespace ToDoListWebApp.Controllers
                 new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
             };
             // создаем объект ClaimsIdentity
-            ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+            var id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
             // установка аутентификационных куки
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+            Response.Cookies.Append("userid", userid.ToString());
         }
 
         public async Task<IActionResult> Logout()
