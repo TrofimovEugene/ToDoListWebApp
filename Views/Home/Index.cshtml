@@ -41,27 +41,36 @@
             </div>
         </div>
     </div>
-    @if (Model.Notes != null)
+    @foreach (var note in Model.Notes)
     {
-        foreach (var note in Model.Notes)
-        {
-            <div class="col-xl-3  col-md-4 col-sm-6  p-4">
-                <form method="get" asp-controller="Home" asp-action="Index">
-                    <div class="card" style="width: 100%; min-height: 300px; border-radius: 5%;border-width:2px; border-color: #0866C6; background-color:white; box-shadow: 0.8em 0.8em 10px rgba(122,122,122,0.5)">
-                        <div class="card-body">
-                            <h5 class="card-title">@note.Header</h5>
-                            <p class="card-text">@note.Text</p>
-                            <p class="card-text">
-                                <small class="text-muted">Last updated @note.DateLastChanged</small>
-                            </p>
-                            <p class="card-text">
-                                <small class="text-muted">Created @note.DateCreated</small>
-                            </p>
+        <div class="col-xl-3  col-md-4 col-sm-6  p-4">
+            <div class="card" style="width: 100%; min-height: 300px; border-radius: 5%;border-width:2px; border-color: #0866C6; background-color:white; box-shadow: 0.8em 0.8em 10px rgba(122,122,122,0.5)">
+                <form method="get" asp-controller="Home" asp-action="Index"></form>
+                <div class="card-header">
+                    <h5 class="card-title">@note.Header</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">@note.Text</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated @note.DateLastChanged</small>
+                    <small class="text-muted">Created @note.DateCreated</small>
+
+                </div>
+                <div class="card-footer col-auto" style="align-items: end">
+                    <div class="row mx-auto">
+                        <div class="col">
                             <button type="button" class="btn btn-primary">Edit</button>
                         </div>
+                        <div class="col">
+                            <form method="get" asp-controller="Home" asp-action="DeleteNote">
+                                <input type="text" name="idNote" value="@note.Id" hidden="hidden">
+                                <input type="submit" class="btn btn-secondary" value="Delete"/>
+                            </form>
+                        </div>
                     </div>
-                </form>
+                </div>
             </div>
-        }
+        </div>
     }
 </div>

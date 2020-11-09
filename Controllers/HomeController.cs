@@ -33,21 +33,37 @@ namespace ToDoListWebApp.Controllers
 		[Authorize]
 		public async Task<IActionResult> CreateNote(NoteViewModel noteViewModel)
 		{
-			if (ModelState.IsValid)
+			if (noteViewModel.Header == null)
+				return RedirectToAction("Index", "Home");
+			
+			_userid = Request.Cookies["userid"];
+			var note = new Note()
 			{
-				_userid = Request.Cookies["userid"];
-				var note = new Note()
-				{
-					Header = noteViewModel.Header,
-					Text = noteViewModel.Text,
-					IdUser = new Guid(_userid),
-					DateCreated = DateTime.Now,
-					DateLastChanged = DateTime.Now
-				};
-				await _context.Notes.AddAsync(note);
-				await _context.SaveChangesAsync();
+				Header = noteViewModel.Header,
+				Text = noteViewModel.Text,
+				IdUser = new Guid(_userid),
+				DateCreated = DateTime.Now,
+				DateLastChanged = DateTime.Now
+			};
+			await _context.Notes.AddAsync(note);
+			await _context.SaveChangesAsync();
+			
+
+			return RedirectToAction("Index", "Home");
+		}
+
+		[Authorize]
+		public async Task<IActionResult> DeleteNote(string idNote)
+		{
+			var note = await _context.Notes.FindAsync(new Guid(idNote));
+			if (note == null)
+			{
+				return NotFound();
 			}
 
+			_context.Notes.Remove(note);
+			await _context.SaveChangesAsync();
+			
 			return RedirectToAction("Index", "Home");
 		}
 	}
