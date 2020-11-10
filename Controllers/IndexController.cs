@@ -12,11 +12,11 @@ using ToDoListWebApp.ViewModels;
 namespace ToDoListWebApp.Controllers
 {
 	[Authorize]
-	public class HomeController : Controller
+	public class IndexController : Controller
 	{
 		private readonly ToDoListContext _context;
 		private string _userid;
-		public HomeController(ToDoListContext context)
+		public IndexController(ToDoListContext context)
 		{
 			_context = context;
 		}
@@ -31,7 +31,7 @@ namespace ToDoListWebApp.Controllers
 		public async Task<IActionResult> CreateNote(NoteViewModel noteViewModel)
 		{
 			if (noteViewModel.Header == null)
-				return RedirectToAction("Index", "Home");
+				return RedirectToAction("Index", "Index");
 			
 			_userid = Request.Cookies["userid"];
 			var note = new Note()
@@ -46,7 +46,7 @@ namespace ToDoListWebApp.Controllers
 			await _context.SaveChangesAsync();
 			
 
-			return RedirectToAction("Index", "Home");
+			return RedirectToAction("Index", "Index");
 		}
 		
 		public async Task<IActionResult> DeleteNote(string idNote)
@@ -60,7 +60,7 @@ namespace ToDoListWebApp.Controllers
 			_context.Notes.Remove(note);
 			await _context.SaveChangesAsync();
 			
-			return RedirectToAction("Index", "Home");
+			return RedirectToAction("Index", "Index");
 		}
 	}
 }

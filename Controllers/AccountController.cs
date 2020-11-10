@@ -39,7 +39,7 @@ namespace ToDoListWebApp.Controllers
                 {
                     await Authenticate(user.Email, user.Id); // аутентификация
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Index");
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
@@ -73,7 +73,7 @@ namespace ToDoListWebApp.Controllers
                     user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
                     await Authenticate(user.Email, user.Id); // аутентификация
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Index");
                 }
                 else
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");

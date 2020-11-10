@@ -14,7 +14,7 @@
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
-                <form method="post" asp-controller="Home" asp-action="CreateNote" novalidate>
+                <form method="post" asp-controller="Index" asp-action="CreateNote" novalidate>
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalCenterTitle">Создание заметки</h5>
@@ -45,7 +45,7 @@
     {
         <div class="col-xl-3  col-md-4 col-sm-6  p-4">
             <div class="card" style="width: 100%; min-height: 300px; border-radius: 5%;border-width:2px; border-color: #0866C6; background-color:white; box-shadow: 0.8em 0.8em 10px rgba(122,122,122,0.5)">
-                <form method="get" asp-controller="Home" asp-action="Index"></form>
+                <form method="get" asp-controller="Index" asp-action="Index"></form>
                 <div class="card-header">
                     <h5 class="card-title">@note.Header</h5>
                 </div>
@@ -63,7 +63,7 @@
                             <button type="button" class="btn btn-primary">Edit</button>
                         </div>
                         <div class="col">
-                            <form method="get" asp-controller="Home" asp-action="DeleteNote">
+                            <form method="get" asp-controller="Index" asp-action="DeleteNote">
                                 <input type="text" name="idNote" value="@note.Id" hidden="hidden">
                                 <input type="submit" class="btn btn-secondary" value="Delete"/>
                             </form>
