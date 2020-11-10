@@ -11,6 +11,7 @@ using ToDoListWebApp.ViewModels;
 
 namespace ToDoListWebApp.Controllers
 {
+	[Authorize]
 	public class HomeController : Controller
 	{
 		private readonly ToDoListContext _context;
@@ -20,7 +21,6 @@ namespace ToDoListWebApp.Controllers
 			_context = context;
 		}
 		
-		[Authorize]
 		public async Task<IActionResult> Index()
 		{
 			_userid = Request.Cookies["userid"];
@@ -28,7 +28,6 @@ namespace ToDoListWebApp.Controllers
 			return View(new NoteViewModel() {Notes = new List<Note>(notes)});
 		}
 		
-		[Authorize]
 		public async Task<IActionResult> CreateNote(NoteViewModel noteViewModel)
 		{
 			if (noteViewModel.Header == null)
@@ -49,8 +48,7 @@ namespace ToDoListWebApp.Controllers
 
 			return RedirectToAction("Index", "Home");
 		}
-
-		[Authorize]
+		
 		public async Task<IActionResult> DeleteNote(string idNote)
 		{
 			var note = await _context.Notes.FindAsync(new Guid(idNote));
