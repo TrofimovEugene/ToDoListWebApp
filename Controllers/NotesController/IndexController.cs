@@ -28,10 +28,7 @@ namespace ToDoListWebApp.Controllers.NotesController
 			var reminders = await _context.Reminders.Where(reminder => reminder.IdUser.ToString() == _userid)
 				.ToListAsync();
 
-			var allNotes = new List<INote>(notes);
-			allNotes.AddRange(reminders);
-
-			return View(new NoteViewModel() {Notes = allNotes});
+			return View(new NoteViewModel() {Notes = notes, Reminders = reminders});
 		}
 		
 		public async Task<IActionResult> CreateNote(NoteViewModel noteViewModel)
@@ -54,7 +51,30 @@ namespace ToDoListWebApp.Controllers.NotesController
 
 			return RedirectToAction("Index", "Index");
 		}
-		
+
+		public async Task<IActionResult> CreateReminder(NoteViewModel noteViewModel)
+		{
+			if (noteViewModel.Header == null)
+				return RedirectToAction("Index", "Index");
+
+			_userid = Request.Cookies["userid"];
+			var reminder = new Reminder()
+			{
+				Header = noteViewModel.Header,
+				Text = noteViewModel.Text,
+				IdUser = new Guid(_userid),
+				DateCreated = DateTime.Now,
+				DateLastChanged = DateTime.Now,
+				ReminderDate = noteViewModel.ReminderDate,
+				StatusNote = noteViewModel.StatusNote
+			};
+			await _context.Reminders.AddAsync(reminder);
+			await _context.SaveChangesAsync();
+
+
+			return RedirectToAction("Index", "Index");
+		}
+
 		public async Task<IActionResult> DeleteNote(string idNote)
 		{
 			var note = await _context.Notes.FindAsync(new Guid(idNote));
@@ -66,6 +86,20 @@ namespace ToDoListWebApp.Controllers.NotesController
 			_context.Notes.Remove(note);
 			await _context.SaveChangesAsync();
 			
+			return RedirectToAction("Index", "Index");
+		}
+
+		public async Task<IActionResult> DeleteReminder(string idReminder)
+		{
+			var reminder = await _context.Reminders.FindAsync(new Guid(idReminder));
+			if (reminder == null)
+			{
+				return NotFound();
+			}
+
+			_context.Reminders.Remove(reminder);
+			await _context.SaveChangesAsync();
+
 			return RedirectToAction("Index", "Index");
 		}
 	}

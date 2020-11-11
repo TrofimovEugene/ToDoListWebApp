@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ToDoListWebApp.Models
 {
-    public class Note : INote
+    public class Note
     {
         [Key]
         public Guid Id { get; set; }
