@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ToDoListWebApp.Context;
 using ToDoListWebApp.Models;
-using ToDoListWebApp.ViewModels;
+using ToDoListWebApp.ViewModels.Notes;
 
 namespace ToDoListWebApp.Controllers
 {
