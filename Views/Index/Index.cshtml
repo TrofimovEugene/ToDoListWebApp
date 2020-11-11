@@ -7,6 +7,11 @@
         margin-right: auto;
         width: 10em
     }
+    a.center-button {
+        margin-left: auto;
+        margin-right: auto;
+        width: 10em
+    }
 </style>
 
 <h1>Welcome!</h1>
@@ -68,7 +73,7 @@
                 <div class="card-footer col-auto" style="align-items: end">
                     <div class="row mx-auto">
                         <div class="col">
-                            <input type="button" class="btn btn-primary center-button" value="Edit"/>
+                            <a type="button" class="btn btn-primary center-button" asp-controller="EditNote" asp-action="EditNote" asp-route-idNote="@note.Id">Edit</a> 
                         </div>
                         <div class="col">
                             <form method="get" asp-controller="Index" asp-action="DeleteNote">

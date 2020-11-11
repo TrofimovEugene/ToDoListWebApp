@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using ToDoListWebApp.Models;
 
-namespace ToDoListWebApp.ViewModels
+namespace ToDoListWebApp.ViewModels.Notes
 {
     public class NoteViewModel
     {

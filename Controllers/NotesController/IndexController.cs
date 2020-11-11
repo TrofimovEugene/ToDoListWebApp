@@ -9,7 +9,7 @@ using ToDoListWebApp.Context;
 using ToDoListWebApp.Models;
 using ToDoListWebApp.ViewModels.Notes;
 
-namespace ToDoListWebApp.Controllers
+namespace ToDoListWebApp.Controllers.NotesController
 {
 	[Authorize]
 	public class IndexController : Controller

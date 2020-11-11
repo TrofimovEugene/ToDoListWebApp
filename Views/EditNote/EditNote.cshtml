@@ -4,6 +4,38 @@
 
 <h1>Edit note</h1>
 
-<div class="container mt-5">
-    <form method="get" asp-controller="EditNote" asp-action="EditNote"></form>
+<div class="container">
+    <div class="row d-flex justify-content-center align-items-center" style="height: 80vh">
+        <div class="col-4 ">
+            <form method="post" asp-controller="EditNote" asp-action="SaveChangesAsync">
+                <div class="card md-3" style="border-color: black">
+                    <div class="form-col mx-3">
+                        <div class="form-group">
+                            <label asp-for="Id" hidden>Id</label>
+                            <input type="text" class="form-control" asp-for="Id" hidden/>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Header">Заголовок</label>
+                            <input type="text" class="form-control" asp-for="Header"/>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Text">Текст</label>
+                            <textarea type="text" class="form-control" asp-for="Text"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DateCreated">Дата создания</label>
+                            <input type="datetime-local" class="form-control" asp-for="DateCreated" disabled="disabled"/>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DateLastChanged">Дата последнего изменения</label>
+                            <input type="datetime-local" class="form-control" asp-for="DateLastChanged" disabled="disabled"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary " asp-controller="EditNote" asp-action="SaveChangesAsync" value="Save"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

@@ -10,14 +10,13 @@ namespace ToDoListWebApp.Context
 		public ToDoListContext(DbContextOptions<ToDoListContext> options)
 			: base(options)
 		{
-			Database.EnsureCreated();
 		}
 		
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<User>()
-				.HasMany(user => user.Notes)
-				.WithOne(note => note.User)
+			modelBuilder.Entity<Note>()
+				.HasOne(note => note.User)
+				.WithMany( user => user.Notes)
 				.IsRequired()
 				.HasForeignKey(note => note.IdUser)
 				.OnDelete(DeleteBehavior.Cascade);
