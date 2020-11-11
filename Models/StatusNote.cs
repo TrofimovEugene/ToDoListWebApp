@@ -2,10 +2,10 @@
 {
     public enum StatusNote
     {
-        Complete,
-        Failed,
-        Low,
-        Medium,
-        High
+        Complete = 0,
+        Failed = 1,
+        Low = 2,
+        Medium = 3,
+        High = 4
     }
 }

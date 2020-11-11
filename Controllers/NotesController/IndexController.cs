@@ -25,7 +25,13 @@ namespace ToDoListWebApp.Controllers.NotesController
 		{
 			_userid = Request.Cookies["userid"];
 			var notes = await _context.Notes.Where(note => note.IdUser.ToString() == _userid).ToListAsync();
-			return View(new NoteViewModel() {Notes = new List<Note>(notes)});
+			var reminders = await _context.Reminders.Where(reminder => reminder.IdUser.ToString() == _userid)
+				.ToListAsync();
+
+			var allNotes = new List<INote>(notes);
+			allNotes.AddRange(reminders);
+
+			return View(new NoteViewModel() {Notes = allNotes});
 		}
 		
 		public async Task<IActionResult> CreateNote(NoteViewModel noteViewModel)

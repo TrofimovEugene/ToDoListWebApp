@@ -2,6 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
@@ -9,6 +10,8 @@
       <Compile Remove="Migrations\20201107090724_NoteTable.Designer.cs" />
       <Compile Remove="Migrations\20201111050328_NoteTable.cs" />
       <Compile Remove="Migrations\20201111050328_NoteTable.Designer.cs" />
+      <Compile Remove="Migrations\20201111054200_Reminders.cs" />
+      <Compile Remove="Migrations\20201111054200_Reminders.Designer.cs" />
     </ItemGroup>
 
     <ItemGroup>
@@ -17,10 +20,6 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Migrations\" />
     </ItemGroup>
 
 </Project>

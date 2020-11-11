@@ -17,5 +17,6 @@ namespace ToDoListWebApp.Models
         public DateTime DateOfBirth { get; set; }
         
         public IEnumerable<Note>? Notes { get; set; }
+        public IEnumerable<Reminder>? Reminders { get; set; }
     }
 }
