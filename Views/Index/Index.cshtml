@@ -1,6 +1,13 @@
 ﻿@model ToDoListWebApp.ViewModels.NoteViewModel;
 @{
 }
+<style>
+    input.center-button {
+        margin-left: auto;
+        margin-right: auto;
+        width: 10em
+    }
+</style>
 
 <h1>Welcome!</h1>
 
@@ -53,19 +60,20 @@
                     <p class="card-text">@note.Text</p>
                 </div>
                 <div class="card-footer">
-                    <small class="text-muted">Last updated @note.DateLastChanged</small>
-                    <small class="text-muted">Created @note.DateCreated</small>
-
+                    <ul class="list-group list-group-flush">
+                        <li><small class="text-muted">Last updated @note.DateLastChanged</small></li>
+                        <li><small class="text-muted">Created @note.DateCreated</small></li>
+                    </ul>
                 </div>
                 <div class="card-footer col-auto" style="align-items: end">
                     <div class="row mx-auto">
                         <div class="col">
-                            <button type="button" class="btn btn-primary">Edit</button>
+                            <input type="button" class="btn btn-primary center-button" value="Edit"/>
                         </div>
                         <div class="col">
                             <form method="get" asp-controller="Index" asp-action="DeleteNote">
                                 <input type="text" name="idNote" value="@note.Id" hidden="hidden">
-                                <input type="submit" class="btn btn-secondary" value="Delete"/>
+                                <input type="submit" class="btn btn-secondary center-button" value="Delete"/>
                             </form>
                         </div>
                     </div>

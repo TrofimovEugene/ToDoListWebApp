@@ -59,7 +59,6 @@ namespace ToDoListWebApp.Controllers
                 var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
                 if (user == null)
                 {
-                    // добавляем пользователя в бд
                     await _context.Users.AddAsync(new User
                     {
                         FirstName = model.FirstName,
@@ -71,7 +70,7 @@ namespace ToDoListWebApp.Controllers
                     await _context.SaveChangesAsync();
                     
                     user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
-                    await Authenticate(user.Email, user.Id); // аутентификация
+                    await Authenticate(user.Email, user.Id);
 
                     return RedirectToAction("Index", "Index");
                 }
@@ -98,6 +97,7 @@ namespace ToDoListWebApp.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            Response.Cookies.Delete("userid");
             return RedirectToAction("Login", "Account");
         }
     }

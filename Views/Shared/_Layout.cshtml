@@ -28,20 +28,30 @@
     </style>
 </head>
 <body>
-<div>
-	<nav class="navbar" style="background-color: #0866C6">
+<header>
+	<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background-color: #0866C6">
 
-		<a class="navbar-brand" style="color: white">ToDo List</a>
+		<a class="navbar-brand" style="color: white" asp-page="/Index/Index">ToDo List</a>
+		<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+			
+		</div>
 		<form class="form-inline" asp-controller="Account" asp-action="Logout">
-			<input type="submit" value="Выйти"/>
+			<input type="submit" class="btn btn-warning" value="Logout"/>
 		</form>
 	</nav>
-</div>
-<div>
+</header>
+<div class="container-fluid">
 	<main role="main" class="pb-3">
 		@RenderBody()
 	</main>
+	<footer class="border-top footer text-muted">
+    	<div class="container">
+    		&copy; 2020 - ToDoListWebApp
+    	</div>
+    </footer>
 </div>
+
+
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
