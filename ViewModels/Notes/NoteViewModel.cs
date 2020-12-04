@@ -15,7 +15,7 @@ namespace ToDoListWebApp.ViewModels.Notes
         // public DateTime DateLastChanged { get; set; }
         // public Guid IdUser { get; set; }
 
-        public List<Note> Notes { get; set; }
-        public List<Reminder> Reminders { get; set; }
+        public List<Note>? Notes { get; set; }
+        public List<Reminder>? Reminders { get; set; }
     }
 }

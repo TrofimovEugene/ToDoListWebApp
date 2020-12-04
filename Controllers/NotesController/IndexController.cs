@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ToDoListWebApp.Context;
 using ToDoListWebApp.Models;
+using ToDoListWebApp.Services;
 using ToDoListWebApp.ViewModels.Notes;
 
 namespace ToDoListWebApp.Controllers.NotesController
@@ -15,18 +16,24 @@ namespace ToDoListWebApp.Controllers.NotesController
 	public class IndexController : Controller
 	{
 		private readonly ToDoListContext _context;
+		private readonly ITimerService _timerService;
 		private string _userid;
-		public IndexController(ToDoListContext context)
+		
+		public IndexController(ToDoListContext context,
+			ITimerService timerService)
 		{
 			_context = context;
+			_timerService = timerService;
+			
+			_timerService.InvokeAsync();
 		}
 		
 		public async Task<IActionResult> Index()
 		{
+			_timerService.InvokeAsync();
 			_userid = Request.Cookies["userid"];
 			var notes = await _context.Notes.Where(note => note.IdUser.ToString() == _userid).ToListAsync();
-			var reminders = await _context.Reminders.Where(reminder => reminder.IdUser.ToString() == _userid)
-				.ToListAsync();
+			var reminders = await _context.Reminders.Where(reminder => reminder.IdUser.ToString() == _userid).ToListAsync();
 
 			return View(new NoteViewModel() {Notes = notes, Reminders = reminders});
 		}

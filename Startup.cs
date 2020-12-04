@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ToDoListWebApp.Context;
+using ToDoListWebApp.Services;
 
 namespace ToDoListWebApp
 {
@@ -32,6 +33,8 @@ namespace ToDoListWebApp
 		        });
 
             services.AddMvc();
+            services.AddTransient<IEmailService, EmailService>();
+            services.AddScoped<ITimerService, TimerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,7 +48,7 @@ namespace ToDoListWebApp
             app.UseRouting();
 
             app.UseAuthentication();    
-            app.UseAuthorization();     
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
