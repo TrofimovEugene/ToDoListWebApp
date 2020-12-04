@@ -5,44 +5,50 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ToDoListWebApp.Context;
-using ToDoListWebApp.ViewModels.Notes;
+using ToDoListWebApp.ViewModels.Reminders;
 
 namespace ToDoListWebApp.Controllers.NotesController
 {
-    public class EditNoteController : Controller
+    public class EditReminderController : Controller
     {
         private readonly ToDoListContext _context;
 
-        public EditNoteController(ToDoListContext context)
+        public EditReminderController(ToDoListContext context)
         {
             _context = context;
         }
+
         // GET
-        public async Task<IActionResult> EditNote(string idNote)
+        public async Task<IActionResult> EditReminder(string idRem)
         {
-            var note = await _context.Notes.FindAsync(new Guid(idNote));
-            var model = new EditNoteViewModel()
+            var note = await _context.Reminders.FindAsync(new Guid(idRem));
+            var model = new ReminderViewModel()
             {
                 Id = note.Id,
                 Header = note.Header,
                 Text = note.Text,
                 DateCreated = note.DateCreated,
                 DateLastChanged = note.DateLastChanged,
+                ReminderDate = note.ReminderDate,
+                StatusNote = note.StatusNote,
                 IdUser = note.IdUser
             };
             return View(model);
         }
-        [Route("EditNote/SaveChangesNoteAsync")]
-        public async Task<IActionResult> SaveChangesNoteAsync(EditNoteViewModel editNoteViewModel)
-        {
-	        var note = await _context.Notes.FindAsync(editNoteViewModel.Id);
-	        note.Header = editNoteViewModel.Header;
-	        note.Text = editNoteViewModel.Text;
-            note.DateLastChanged = DateTime.Now;
 
-	        try
+        [Route("EditNote/SaveChangesReminderAsync")]
+        public async Task<IActionResult> SaveChangesReminderAsync(ReminderViewModel reminderViewModel)
+        {
+            var note = await _context.Reminders.FindAsync(reminderViewModel.Id);
+            note.Header = reminderViewModel.Header;
+            note.Text = reminderViewModel.Text;
+            note.DateLastChanged = DateTime.Now;
+            note.ReminderDate = reminderViewModel.ReminderDate;
+            note.StatusNote = reminderViewModel.StatusNote;
+
+            try
             {
-	            _context.Entry(note).State = EntityState.Modified;
+                _context.Entry(note).State = EntityState.Modified;
             }
             catch (Exception e)
             {
@@ -55,7 +61,7 @@ namespace ToDoListWebApp.Controllers.NotesController
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!NoteExists(editNoteViewModel.Id))
+                if (!ReminderExists(reminderViewModel.Id))
                 {
                     return RedirectToAction("Index", "Index");
                 }
@@ -66,9 +72,9 @@ namespace ToDoListWebApp.Controllers.NotesController
             return RedirectToAction("Index", "Index");
         }
         
-        private bool NoteExists(Guid id)
+        private bool ReminderExists(Guid id)
         {
-            return _context.Notes.Any(e => e.Id == id);
+            return _context.Reminders.Any(e => e.Id == id);
         }
     }
 }

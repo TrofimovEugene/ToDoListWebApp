@@ -14,7 +14,7 @@
     }
 </style>
 
-<h1>Welcome!</h1>
+<h1>Заметки и напоминания</h1>
 
 <div class="container-fluid">
 	<nav>
@@ -175,7 +175,7 @@
 							<div class="card-footer col-auto" style="align-items: end">
 								<div class="row">
 									<div class="col">
-										<a type="button" class="btn btn-primary center-button" asp-controller="EditNote" asp-action="EditNote" asp-route-idNote="@reminder.Id">Edit</a>
+										<a type="button" class="btn btn-primary center-button" asp-controller="EditReminder" asp-action="EditReminder" asp-route-idRem="@reminder.Id">Edit</a>
 									</div>
 									<div class="col">
 										<form method="get" asp-controller="Index" asp-action="DeleteReminder">
