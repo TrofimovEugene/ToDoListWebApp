@@ -5,190 +5,195 @@
     input.center-button {
         margin-left: auto;
         margin-right: auto;
-        width: 10em
+        width: 9em
     }
     a.center-button {
         margin-left: auto;
         margin-right: auto;
-        width: 10em
+        width: 9em
+    }
+    #scroll {
+    	overflow: auto;
+    	height: 75%;
     }
 </style>
 
 <h1>Заметки и напоминания</h1>
-
-<div class="container-fluid">
-	<nav>
-		<div class="nav nav-tabs" id="nav-tab" role="tablist">
-			<a class="nav-item nav-link active" id="nav-note-tab" data-toggle="tab" href="#nav-note"
-			   role="tab" aria-controls="nav-note" aria-selected="true">Заметки</a>
-			<a class="nav-item nav-link" id="nav-reminder-tab" data-toggle="tab" href="#nav-reminder"
-			   role="tab" aria-controls="nav-reminder" aria-selected="false">Напоминания</a>
-		</div>
-	</nav>
-	<div class="tab-content" id="nav-tabContent">
-		<div class="tab-pane fade show active" id="nav-note" role="tabpanel"
-		     aria-labelledby="nav-note-tab">
-			<div class="row">
-				<div class="col-xl-3  col-md-4 col-sm-6  p-4">
-					<button type="button" class="btn-outline-primary" style="width: 100%; min-height: 300px; border-radius: 5%; border-width: 2px; border-color: #0866C6; background-color: white; box-shadow: 0.8em 0.8em 10px rgba(122, 122, 122, 0.5)" data-toggle="modal"
-					        data-target="#exampleModalCenter">
-						<i class="fas fa-plus" style="font-size: 4rem;"></i>
-					</button>
-					<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-					     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-						<div class="modal-dialog modal-dialog-centered" role="document">
-							<form method="post" asp-controller="Index" asp-action="CreateNote" novalidate>
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="exampleModalCenterTitle">Создание заметки</h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-									<div class="modal-body">
-										<div class="form-university">
-											<label asp-for="Header">Заголовок</label>
-											<input asp-for="Header" type="text" class="form-control" required>
-										</div>
-										<div class="form-university">
-											<label asp-for="Text">Текст</label>
-											<textarea asp-for="Text" class="form-control"></textarea>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-										<input type="submit" class="btn btn-primary" style="background-color: #0866C6" value="Создать"/>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-				@foreach (var note in Model.Notes)
-				{
-					<div class="col-xl-3  col-md-4 col-sm-6  p-4">
-						<div class="card" style="width: 100%; min-height: 300px; border-radius: 5%; border-width: 2px; border-color: #0866C6; background-color: white; box-shadow: 0.8em 0.8em 10px rgba(122, 122, 122, 0.5)">
-							<form method="get" asp-controller="Index" asp-action="Index"></form>
-							<div class="card-header">
-								<h5 class="card-title">@note.Header</h5>
-							</div>
-							<div class="card-body">
-								<p class="card-text">@note.Text</p>
-							</div>
-							<div class="card-footer">
-								<ul class="list-group list-group-flush">
-									<li><small class="text-muted">Last updated @note.DateLastChanged</small></li>
-									<li><small class="text-muted">Created @note.DateCreated</small></li>
-								</ul>
-							</div>
-							<div class="card-footer col-auto" style="align-items: end">
-								<div class="row mx-auto">
-									<div class="col">
-										<a type="button" class="btn btn-primary center-button" asp-controller="EditNote" asp-action="EditNote" asp-route-idNote="@note.Id">Edit</a>
-									</div>
-									<div class="col">
-										<form method="get" asp-controller="Index" asp-action="DeleteNote">
-											<input type="text" name="idNote" value="@note.Id" hidden="hidden">
-											<input type="submit" class="btn btn-secondary center-button" value="Delete"/>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				}
-			</div>
-		</div>
-		<div class="tab-pane fade disabled" id="nav-reminder" role="tabpanel"
-		     aria-labelledby="nav-reminder-tab">
-			<div class="row">
-				<div class="col-xl-3  col-md-4 col-sm-6  p-4">
-					<button type="button" class="btn-outline-primary" style="width: 100%; min-height: 300px; border-radius: 5%; border-width: 2px; border-color: #0866C6; background-color: white; box-shadow: 0.8em 0.8em 10px rgba(122, 122, 122, 0.5)" data-toggle="modal"
-					        data-target="#reminderModalCenter">
-						<i class="fas fa-plus" style="font-size: 4rem;"></i>
-					</button>
-					<div class="modal fade" id="reminderModalCenter" tabindex="-1" role="dialog"
-					     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-						<div class="modal-dialog modal-dialog-centered" role="document">
-							<form method="post" asp-controller="Index" asp-action="CreateReminder" novalidate>
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="exampleModalCenterTitle">Создание заметки</h5>
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-									<div class="modal-body">
-										<div class="form-university">
-											<label asp-for="Header">Заголовок</label>
-											<input asp-for="Header" type="text" class="form-control" required>
-										</div>
-										<div class="form-university">
-											<label asp-for="Text">Текст</label>
-											<textarea asp-for="Text" class="form-control"></textarea>
-										</div>
-										<div class="form-university">
-											<label asp-for="ReminderDate">Дата напомнинания</label>
-											<input asp-for="ReminderDate" type="datetime-local" class="form-control"/>
-										</div>
-										<div>
-											<label asp-for="StatusNote">Статус</label>
-											<select asp-for="StatusNote" required>
-												<option value="0">Complete</option>
-												<option value="1">Failed</option>
-												<option value="2">Low</option>
-												<option value="3">Medium</option>
-												<option value="4">High</option>
-											</select>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-										<input type="submit" class="btn btn-primary" style="background-color: #0866C6" value="Создать"/>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-				@foreach (var reminder in Model.Reminders)
-				{
-					<div class="col-xl-3  col-md-4 col-sm-6  p-4">
-						<div class="card" style="width: 100%; min-height: 300px; border-radius: 5%; border-width: 2px; border-color: #0866C6; background-color: white; box-shadow: 0.8em 0.8em 10px rgba(122, 122, 122, 0.5)">
-							<form method="get" asp-controller="Index" asp-action="Index"></form>
-							<div class="card-header">
-								<h5 class="card-title">@reminder.Header</h5>
-							</div>
-							<div class="card-body">
-								<p class="card-text">@reminder.Text</p>
-							</div>
-							<div class="card-body">
-								<p class="card-text">@reminder.StatusNote</p>
-							</div>
-							<div class="card-footer">
-								<ul class="list-group list-group-flush">
-									<li><small class="text-muted">Last updated @reminder.DateLastChanged</small></li>
-									<li><small class="text-muted">Created @reminder.DateCreated</small></li>
-									<li><small class="text-muted">Remind @reminder.ReminderDate</small></li>
-								</ul>
-							</div>
-							<div class="card-footer col-auto" style="align-items: end">
-								<div class="row">
-									<div class="col">
-										<a type="button" class="btn btn-primary center-button" asp-controller="EditReminder" asp-action="EditReminder" asp-route-idRem="@reminder.Id">Edit</a>
-									</div>
-									<div class="col">
-										<form method="get" asp-controller="Index" asp-action="DeleteReminder">
-											<input type="text" name="idReminder" value="@reminder.Id" hidden="hidden">
-											<input type="submit" class="btn btn-secondary center-button" value="Delete"/>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				}
-			</div>
-		</div>
+<nav>
+	<div class="nav nav-tabs" id="nav-tab" role="tablist">
+		<a class="nav-item nav-link active" id="nav-note-tab" data-toggle="tab" href="#nav-note"
+		   role="tab" aria-controls="nav-note" aria-selected="true">Заметки</a>
+		<a class="nav-item nav-link" id="nav-reminder-tab" data-toggle="tab" href="#nav-reminder"
+		   role="tab" aria-controls="nav-reminder" aria-selected="false">Напоминания</a>
 	</div>
-</div>
+</nav>
+
+<div id="scroll">
+	<div class="container-fluid">
+		<div class="tab-content" id="nav-tabContent">
+			<div class="tab-pane fade show active" id="nav-note" role="tabpanel"
+			     aria-labelledby="nav-note-tab">
+				<div class="row">
+					<div class="col-xl-3  col-md-4 col-sm-6  p-4">
+						<button type="button" class="btn-outline-primary" style="width: 100%; min-height: 300px; border-radius: 5%; border-width: 2px; border-color: #0866C6; background-color: white; box-shadow: 0.8em 0.8em 10px rgba(122, 122, 122, 0.5)" data-toggle="modal"
+						        data-target="#exampleModalCenter">
+							<i class="fas fa-plus" style="font-size: 4rem;"></i>
+						</button>
+						<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+						     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+								<form method="post" asp-controller="Index" asp-action="CreateNote" novalidate>
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalCenterTitle">Создание заметки</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<div class="form-university">
+												<label asp-for="Header">Заголовок</label>
+												<input asp-for="Header" type="text" class="form-control" required>
+											</div>
+											<div class="form-university">
+												<label asp-for="Text">Текст</label>
+												<textarea asp-for="Text" class="form-control"></textarea>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+											<input type="submit" class="btn btn-primary" style="background-color: #0866C6" value="Создать"/>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					@foreach (var note in Model.Notes)
+					{
+						<div class="col-xl-3  col-md-4 col-sm-6  p-4">
+							<div class="card" style="width: 100%; min-height: 300px; border-radius: 5%; border-width: 2px; border-color: #0866C6; background-color: white; box-shadow: 0.8em 0.8em 10px rgba(122, 122, 122, 0.5)">
+								<form method="get" asp-controller="Index" asp-action="Index"></form>
+								<div class="card-header">
+									<h5 class="card-title">@note.Header</h5>
+								</div>
+								<div class="card-body">
+									<p class="card-text">@note.Text</p>
+								</div>
+								<div class="card-footer">
+									<ul class="list-group list-group-flush">
+										<li><small class="text-muted">Last updated @note.DateLastChanged</small></li>
+										<li><small class="text-muted">Created @note.DateCreated</small></li>
+									</ul>
+								</div>
+								<div class="card-footer col-auto" style="align-items: end">
+									<div class="row mx-auto">
+										<div class="col">
+											<a type="button" class="btn btn-primary center-button" asp-controller="EditNote" asp-action="EditNote" asp-route-idNote="@note.Id">Edit</a>
+										</div>
+										<div class="col">
+											<form method="get" asp-controller="Index" asp-action="DeleteNote">
+												<input type="text" name="idNote" value="@note.Id" hidden="hidden">
+												<input type="submit" class="btn btn-secondary center-button" value="Delete"/>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+			<div class="tab-pane fade disabled" id="nav-reminder" role="tabpanel"
+			     aria-labelledby="nav-reminder-tab">
+				<div class="row">
+					<div class="col-xl-3  col-md-4 col-sm-6  p-4">
+						<button type="button" class="btn-outline-primary" style="width: 100%; min-height: 300px; border-radius: 5%; border-width: 2px; border-color: #0866C6; background-color: white; box-shadow: 0.8em 0.8em 10px rgba(122, 122, 122, 0.5)" data-toggle="modal"
+						        data-target="#reminderModalCenter">
+							<i class="fas fa-plus" style="font-size: 4rem;"></i>
+						</button>
+						<div class="modal fade" id="reminderModalCenter" tabindex="-1" role="dialog"
+						     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+								<form method="post" asp-controller="Index" asp-action="CreateReminder" novalidate>
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalCenterTitle">Создание заметки</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<div class="form-university">
+												<label asp-for="Header">Заголовок</label>
+												<input asp-for="Header" type="text" class="form-control" required>
+											</div>
+											<div class="form-university">
+												<label asp-for="Text">Текст</label>
+												<textarea asp-for="Text" class="form-control"></textarea>
+											</div>
+											<div class="form-university">
+												<label asp-for="ReminderDate">Дата напомнинания</label>
+												<input asp-for="ReminderDate" type="datetime-local" class="form-control"/>
+											</div>
+											<div>
+												<label asp-for="StatusNote">Статус</label>
+												<select asp-for="StatusNote" required>
+													<option value="0">Complete</option>
+													<option value="1">Failed</option>
+													<option value="2">Low</option>
+													<option value="3">Medium</option>
+													<option value="4">High</option>
+												</select>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+											<input type="submit" class="btn btn-primary" style="background-color: #0866C6" value="Создать"/>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					@foreach (var reminder in Model.Reminders)
+					{
+						<div class="col-xl-3  col-md-4 col-sm-6  p-4">
+							<div class="card" style="width: 100%; min-height: 300px; border-radius: 5%; border-width: 2px; border-color: #0866C6; background-color: white; box-shadow: 0.8em 0.8em 10px rgba(122, 122, 122, 0.5)">
+								<form method="get" asp-controller="Index" asp-action="Index"></form>
+								<div class="card-header">
+									<h5 class="card-title">@reminder.Header</h5>
+								</div>
+								<div class="card-body">
+									<p class="card-text">@reminder.Text</p>
+								</div>
+								<div class="card-body">
+									<p class="card-text">@reminder.StatusNote</p>
+								</div>
+								<div class="card-footer">
+									<ul class="list-group list-group-flush">
+										<li><small class="text-muted">Last updated @reminder.DateLastChanged</small></li>
+										<li><small class="text-muted">Created @reminder.DateCreated</small></li>
+										<li><small class="text-muted">Remind @reminder.ReminderDate</small></li>
+									</ul>
+								</div>
+								<div class="card-footer col-auto" style="align-items: end">
+									<div class="row">
+										<div class="col">
+											<a type="button" class="btn btn-primary center-button" asp-controller="EditReminder" asp-action="EditReminder" asp-route-idRem="@reminder.Id">Edit</a>
+										</div>
+										<div class="col">
+											<form method="get" asp-controller="Index" asp-action="DeleteReminder">
+												<input type="text" name="idReminder" value="@reminder.Id" hidden="hidden">
+												<input type="submit" class="btn btn-secondary center-button" value="Delete"/>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</div></div>
