@@ -7,6 +7,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Version>1.0.1</Version>
         <StartupObject>ToDoListWebApp.Program</StartupObject>
+        <ApplicationInsightsResourceId>/subscriptions/bbd839da-3ccd-4eb8-8000-272a3c1b8dbb/resourceGroups/ToDoList/providers/microsoft.insights/components/todolistwebapp2020</ApplicationInsightsResourceId>
     </PropertyGroup>
 
     <ItemGroup>
@@ -20,13 +21,12 @@
 
     <ItemGroup>
       <PackageReference Include="MailKit" Version="2.9.0" />
+      <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.9" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.9">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
-      <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
-      <PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="5.0.0" />
     </ItemGroup>
 
 </Project>
