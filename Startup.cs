@@ -23,8 +23,7 @@ namespace ToDoListWebApp
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-	        var connection = Configuration.GetConnectionString("DefaultConnection");
-	        services.AddDbContext<ToDoListContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<ToDoListContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
 	        
 	        services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 		        .AddCookie(options => //CookieAuthenticationOptions
@@ -35,6 +34,7 @@ namespace ToDoListWebApp
             services.AddMvc();
             services.AddTransient<IEmailService, EmailService>();
             services.AddScoped<ITimerService, TimerService>();
+            services.AddApplicationInsightsTelemetry(Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
