@@ -1,9 +1,9 @@
-﻿namespace ToDoListWebApp.Services
-{
-    public interface ITimerService
-    {
-        void InvokeAsync();
+﻿using System;
+using Microsoft.Extensions.Hosting;
 
-        void DisableTimer();
+namespace ToDoListWebApp.Services
+{
+    public interface ITimerService : IHostedService, IDisposable
+    {
     }
 }

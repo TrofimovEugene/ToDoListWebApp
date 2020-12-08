@@ -69,38 +69,41 @@
 							</div>
 						</div>
 					</div>
-					@foreach (var note in Model.Notes)
+					@if(Model.Notes != null)
 					{
-						<div class="col-xl-3  col-md-4 col-sm-6  p-4">
-							<div class="card" style="width: 100%; min-height: 300px; border-radius: 5%; border-width: 2px; border-color: #0866C6; background-color: white; box-shadow: 0.8em 0.8em 10px rgba(122, 122, 122, 0.5)">
-								<form method="get" asp-controller="Index" asp-action="Index"></form>
-								<div class="card-header">
-									<h5 class="card-title">@note.Header</h5>
-								</div>
-								<div class="card-body">
-									<p class="card-text">@note.Text</p>
-								</div>
-								<div class="card-footer">
-									<ul class="list-group list-group-flush">
-										<li><small class="text-muted">Last updated @note.DateLastChanged</small></li>
-										<li><small class="text-muted">Created @note.DateCreated</small></li>
-									</ul>
-								</div>
-								<div class="card-footer col-auto" style="align-items: end">
-									<div class="row mx-auto">
-										<div class="col">
-											<a type="button" class="btn btn-primary center-button" asp-controller="EditNote" asp-action="EditNote" asp-route-idNote="@note.Id">Edit</a>
-										</div>
-										<div class="col">
-											<form method="get" asp-controller="Index" asp-action="DeleteNote">
-												<input type="text" name="idNote" value="@note.Id" hidden="hidden">
-												<input type="submit" class="btn btn-secondary center-button" value="Delete"/>
-											</form>
+						foreach (var note in Model.Notes)
+						{
+							<div class="col-xl-3  col-md-4 col-sm-6  p-4">
+								<div class="card" style="width: 100%; min-height: 300px; border-radius: 5%; border-width: 2px; border-color: #0866C6; background-color: white; box-shadow: 0.8em 0.8em 10px rgba(122, 122, 122, 0.5)">
+									<form method="get" asp-controller="Index" asp-action="Index"></form>
+									<div class="card-header">
+										<h5 class="card-title">@note.Header</h5>
+									</div>
+									<div class="card-body">
+										<p class="card-text">@note.Text</p>
+									</div>
+									<div class="card-footer">
+										<ul class="list-group list-group-flush">
+											<li><small class="text-muted">Last updated @note.DateLastChanged</small></li>
+											<li><small class="text-muted">Created @note.DateCreated</small></li>
+										</ul>
+									</div>
+									<div class="card-footer col-auto" style="align-items: end">
+										<div class="row mx-auto">
+											<div class="col">
+												<a type="button" class="btn btn-primary center-button" asp-controller="EditNote" asp-action="EditNote" asp-route-idNote="@note.Id">Edit</a>
+											</div>
+											<div class="col">
+												<form method="get" asp-controller="Index" asp-action="DeleteNote">
+													<input type="text" name="idNote" value="@note.Id" hidden="hidden">
+													<input type="submit" class="btn btn-secondary center-button" value="Delete"/>
+												</form>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						}
 					}
 				</div>
 			</div>
@@ -156,44 +159,48 @@
 							</div>
 						</div>
 					</div>
-					@foreach (var reminder in Model.Reminders)
+					@if (Model.Reminders != null)
 					{
-						<div class="col-xl-3  col-md-4 col-sm-6  p-4">
-							<div class="card" style="width: 100%; min-height: 300px; border-radius: 5%; border-width: 2px; border-color: #0866C6; background-color: white; box-shadow: 0.8em 0.8em 10px rgba(122, 122, 122, 0.5)">
-								<form method="get" asp-controller="Index" asp-action="Index"></form>
-								<div class="card-header">
-									<h5 class="card-title">@reminder.Header</h5>
-								</div>
-								<div class="card-body">
-									<p class="card-text">@reminder.Text</p>
-								</div>
-								<div class="card-body">
-									<p class="card-text">@reminder.StatusNote</p>
-								</div>
-								<div class="card-footer">
-									<ul class="list-group list-group-flush">
-										<li><small class="text-muted">Last updated @reminder.DateLastChanged</small></li>
-										<li><small class="text-muted">Created @reminder.DateCreated</small></li>
-										<li><small class="text-muted">Remind @reminder.ReminderDate</small></li>
-									</ul>
-								</div>
-								<div class="card-footer col-auto" style="align-items: end">
-									<div class="row">
-										<div class="col">
-											<a type="button" class="btn btn-primary center-button" asp-controller="EditReminder" asp-action="EditReminder" asp-route-idRem="@reminder.Id">Edit</a>
-										</div>
-										<div class="col">
-											<form method="get" asp-controller="Index" asp-action="DeleteReminder">
-												<input type="text" name="idReminder" value="@reminder.Id" hidden="hidden">
-												<input type="submit" class="btn btn-secondary center-button" value="Delete"/>
-											</form>
+						@foreach (var reminder in Model.Reminders)
+						{
+							<div class="col-xl-3  col-md-4 col-sm-6  p-4">
+								<div class="card" style="width: 100%; min-height: 300px; border-radius: 5%; border-width: 2px; border-color: #0866C6; background-color: white; box-shadow: 0.8em 0.8em 10px rgba(122, 122, 122, 0.5)">
+									<form method="get" asp-controller="Index" asp-action="Index"></form>
+									<div class="card-header">
+										<h5 class="card-title">@reminder.Header</h5>
+									</div>
+									<div class="card-body">
+										<p class="card-text">@reminder.Text</p>
+									</div>
+									<div class="card-body">
+										<p class="card-text">@reminder.StatusNote</p>
+									</div>
+									<div class="card-footer">
+										<ul class="list-group list-group-flush">
+											<li><small class="text-muted">Last updated @reminder.DateLastChanged</small></li>
+											<li><small class="text-muted">Created @reminder.DateCreated</small></li>
+											<li><small class="text-muted">Remind @reminder.ReminderDate</small></li>
+										</ul>
+									</div>
+									<div class="card-footer col-auto" style="align-items: end">
+										<div class="row">
+											<div class="col">
+												<a type="button" class="btn btn-primary center-button" asp-controller="EditReminder" asp-action="EditReminder" asp-route-idRem="@reminder.Id">Edit</a>
+											</div>
+											<div class="col">
+												<form method="get" asp-controller="Index" asp-action="DeleteReminder">
+													<input type="text" name="idReminder" value="@reminder.Id" hidden="hidden">
+													<input type="submit" class="btn btn-secondary center-button" value="Delete"/>
+												</form>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						}
 					}
 				</div>
 			</div>
 		</div>
-	</div></div>
+	</div>
+	</div>

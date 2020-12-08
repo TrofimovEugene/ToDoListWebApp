@@ -13,6 +13,6 @@ namespace ToDoListWebApp.Models
         public DateTime DateLastChanged { get; set; }
         public Guid IdUser { get; set; }
         
-        public User User { get; set; }
+        public User? User { get; set; }
     }
 }

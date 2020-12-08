@@ -5,7 +5,9 @@ namespace ToDoListWebApp.ViewModels.Account
 {
 	public class RegisterViewModel
 	{
+#pragma warning disable 8618
 		public string FirstName { get; set; }
+
 		public string LastName { get; set; }
 		public DateTime DateOfBirth { get; set; }
 		[Required(ErrorMessage = "Не указан Email")]
@@ -18,5 +20,6 @@ namespace ToDoListWebApp.ViewModels.Account
 		[DataType(DataType.Password)]
 		[Compare("Password", ErrorMessage = "Пароль введен неверно")]
 		public string ConfirmPassword { get; set; }
+#pragma warning restore 8618
 	}
 }
