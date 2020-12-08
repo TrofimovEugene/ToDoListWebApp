@@ -39,7 +39,7 @@ namespace ToDoListWebApp.Services
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            _timer = new Timer(CheckReminders, null, 0, 30000);
+            _timer = new Timer(CheckReminders, null, 0, 60000);
 
             return Task.CompletedTask;
         }
