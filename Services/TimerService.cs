@@ -33,7 +33,7 @@ namespace ToDoListWebApp.Services
             {
                 var user = await _context.Users.FindAsync(reminder.IdUser);
                 Trace.WriteLine("Send mail!!!");
-                await _emailService.SendEmailAsync(user.Email, "Напоминание", reminder.Header);
+                await _emailService.SendEmailAsync(user.Email, reminder.Header, reminder.Text);
             }
         }
 

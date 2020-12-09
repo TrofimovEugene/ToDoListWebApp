@@ -6,7 +6,7 @@ namespace ToDoListWebApp.Services
 {
     public class EmailService : IEmailService
     {
-        public async Task SendEmailAsync(string email, string subject, string message)
+        public async Task SendEmailAsync(string email, string subject, string? message)
         {
             var emailMessage = new MimeMessage();
  

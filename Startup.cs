@@ -12,13 +12,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ToDoListWebApp.Context;
 using ToDoListWebApp.Services;
-using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IWebHostEnvironment;
 
 namespace ToDoListWebApp
 {
     public class Startup
     {
-	    public Startup(IHostingEnvironment env)
+	    public Startup(IHostEnvironment env)
 	    {
 		    var builder = new ConfigurationBuilder()
 			    .SetBasePath(env.ContentRootPath)
