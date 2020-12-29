@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using ToDoListWebApp.Context;
 using ToDoListWebApp.Models;
 using ToDoListWebApp.ViewModels.Account;
@@ -16,11 +17,14 @@ namespace ToDoListWebApp.Controllers
 	public class AccountController : Controller
 	{
 		private readonly ToDoListContext _context;
+        private readonly ILogger<AccountController> _logger;
 
-		public AccountController(ToDoListContext context)
+		public AccountController(ToDoListContext context,
+            ILogger<AccountController> logger)
 		{
 			_context = context;
-		}
+            _logger = logger;
+        }
 
         [HttpGet]
         public IActionResult Login()
@@ -32,6 +36,7 @@ namespace ToDoListWebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
+            _logger.LogInformation("Login user.");
             if (ModelState.IsValid)
             {
                 var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
@@ -41,6 +46,7 @@ namespace ToDoListWebApp.Controllers
 
                     return RedirectToAction("Index", "Index");
                 }
+                _logger.LogWarning("Incorrect login or password.");
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
             return View(model);
@@ -54,6 +60,7 @@ namespace ToDoListWebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
+            _logger.LogInformation("Register user.");
             if (ModelState.IsValid)
             {
                 var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
@@ -75,7 +82,10 @@ namespace ToDoListWebApp.Controllers
                     return RedirectToAction("Index", "Index");
                 }
                 else
+                {
+                    _logger.LogWarning("Incorrect login or password.");
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                }
             }
             return View(model);
         }

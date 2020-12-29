@@ -1,9 +1,38 @@
 {
   "dependencies": {
+    "secrets1": {
+      "restored": true,
+      "restoreTime": "2020-12-09T11:59:44.655974Z"
+    },
     "mssql1": {
       "restored": true,
       "restoreTime": "2020-12-07T05:01:10.5436342Z"
+    },
+    "appInsights1": {
+      "restored": true,
+      "restoreTime": "2020-12-09T11:59:07.1931962Z"
     }
   },
-  "parameters": {}
+  "parameters": {
+    "appInsights1.subscriptionId": {
+      "Name": "appInsights1.subscriptionId",
+      "Type": "subscription",
+      "Value": "bbd839da-3ccd-4eb8-8000-272a3c1b8dbb"
+    },
+    "appInsights1.resourceGroupName": {
+      "Name": "appInsights1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "ToDoList"
+    },
+    "secrets1.resourceGroupName": {
+      "Name": "secrets1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "ToDoList"
+    },
+    "secrets1.subscriptionId": {
+      "Name": "secrets1.subscriptionId",
+      "Type": "subscription",
+      "Value": "bbd839da-3ccd-4eb8-8000-272a3c1b8dbb"
+    }
+  }
 }

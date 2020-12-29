@@ -43,7 +43,7 @@ namespace ToDoListWebApp.Controllers.NotesController
             note.Header = reminderViewModel.Header;
             note.Text = reminderViewModel.Text;
             note.DateLastChanged = DateTime.Now;
-            note.ReminderDate = reminderViewModel.ReminderDate;
+            note.ReminderDate = new DateTime(reminderViewModel.ReminderDate.Ticks);
             note.StatusNote = reminderViewModel.StatusNote;
 
             try
